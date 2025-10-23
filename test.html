@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bouncing Text</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #text {
+    position: absolute;
+    color: white;
+    font-size: 3em;
+    font-family: Arial, sans-serif;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+<div id="text">bero have strong autism</div>
+
+<script>
+const text = document.getElementById('text');
+let x = 0;
+let y = 0;
+let dx = 3; // vitesse horizontale
+let dy = 3; // vitesse verticale
+
+function moveText() {
+  const maxX = window.innerWidth - text.offsetWidth;
+  const maxY = window.innerHeight - text.offsetHeight;
+
+  x += dx;
+  y += dy;
+
+  if (x <= 0 || x >= maxX) dx = -dx;
+  if (y <= 0 || y >= maxY) dy = -dy;
+
+  text.style.left = x + 'px';
+  text.style.top = y + 'px';
+
+  requestAnimationFrame(moveText);
+}
+
+moveText();
+</script>
+</body>
+</html>
+
